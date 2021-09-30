@@ -25,11 +25,11 @@ digitalWrite(ledcal,LOW);
 void loop() {
   velpot=analogRead(A0);
   int pitch = map(velpot,senbajo, senalto, 80, 1000);
-  analogWrite(9, pitch);
+ // analogWrite(9, pitch);
   
   delay(999);               // retardo de casi 1 segundo
-  Serial.print(contador*(60/8)); // Como son dos interrupciones por vuelta (contador * (60/8))
-  Serial.println(" RPM");    //  El numero 2 depende del numero aspas de la helise del motor en prueba
+  Serial.print(contador*(60/8)); // Como son 8 interrupciones por vuelta (contador * (60/8))
+  Serial.println(" RPM");    //  El numero 8 depende del numero aspas de la helise del motor en prueba
   Serial.println(velpot);
   contador = 0;
 }
