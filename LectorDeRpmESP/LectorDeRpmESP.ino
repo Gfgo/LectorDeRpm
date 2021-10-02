@@ -31,7 +31,7 @@ void loop() {
   Serial.print(contador); // Como son 8 interrupciones por vuelta (contador * (60/8)=7.5)
   Serial.println(" RPM1");    //  El numero 8 depende del numero aspas de la helise del motor en prueba
   //Serial.println(velpot);
-  //contador = 0;
+  contador = 0;
 }
  
 void inter()    // Funcion que se ejecuta durante cada interrupion
