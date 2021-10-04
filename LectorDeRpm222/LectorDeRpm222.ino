@@ -10,13 +10,14 @@ void inter(){                     // Funcion que se ejecuta durante cada interru
 
 void setup() {
   Serial.begin(115200);
-
+  
   pinMode(vel, INPUT);
   attachInterrupt(digitalPinToInterrupt(vel), inter, RISING);
 }
 
 void loop() {
-  Serial.println(seg);
+  Serial.print(seg);            //segundos
+  Serial.print("\t");
   seg++;
   delay(999);
   cont*=7.5;                      // Como son 8 interrupciones por vuelta (contador * (60/8)=7.5)
