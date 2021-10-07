@@ -5,31 +5,60 @@
 #endif
 
 BluetoothSerial SerialBT;
-int a=0;
+String dato = "";                         // un string para guardar la info
+bool findato = false;                     // whether the string is complete
+int a=0;                                  //Seleccion de opcion
 
 void setup() {
-  Serial.begin(115200);
-  SerialBT.begin("EntrenadorBMX");            //nombre de dispositivo
+  Serial.begin(115200);                   // inicio serial
+  SerialBT.begin(115200);                 // inicio bluetooth
+  SerialBT.println("Conexion disponible");
   Serial.println("Conexion disponible");
+  dato.reserve(200);                      //Guardo 200 bytes para datos de llegada
+}
+void loop() {
+  SerialBT.println("hola opcion 1 o 2 -----");      //Pregunta po opcion
+  Serial.println("hola opcion 1 o 2------");
+  Serial.println(a);
+  a=dato.toInt();
+
+switch (a) {                                //seleccion de caso segun usuaio
+    case 1:
+    SerialBT.print("hola opcion");
+    Serial.print("hola opcion");
+    for (int i=0;i<=10;i++){
+        SerialBT.print(i);
+        Serial.print(i);
+        delay(500);
+        }
+    a=0;  
+    break;
+    case 2:
+      SerialBT.print("No valida 22");
+      Serial.print("No valida 22");
+      delay(2000);
+      a=0;
+      break;
+    default:
+      SerialBT.print("No valida 33");
+      Serial.print("No valida 33");
+      delay(2000);
+      a=0;
+      break;
+      }
+if (findato) {
+    SerialBT.println(dato);
+    dato = "";          //limpiar el dato
+    findato = false;
+  }
 }
 
-void loop() {
-
-if (SerialBT.available()) {
-    SerialBT.print("Bienvenido al sistema de monitorización de entrenamiento, desea iniciar 1=si: ");
-     a=Serial.write(SerialBT.read());      //recepcion de información
-}  
-     if (a==1){
-//  if (Serial.available()) {
-    //SerialBT.write(Serial.read());          //envio de informacion
-    for (int i=48; i<=250; i++){
-      SerialBT.write(i);
-      Serial.println(i);
-      delay(1000);
-//      }
+void serialEvent() {                        // Funcion para esperar datos entrados por usuario
+  while (Serial.available()) {              //Espera por el buffer de datos
+    char inChar = (char)Serial.read();    //Almacena dato entrante (serial normal)
+    dato += inChar;                         //Almacena el dato local en variable global
+    if (inChar == '\n') {                   //Si el dato que viene es nueva linea lo pone en variable para el loop
+      findato = true;
     }
   }
-  
-
-  delay(20);
 }
