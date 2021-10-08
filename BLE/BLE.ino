@@ -9,80 +9,89 @@ BluetoothSerial SerialBT;
 
 //Variables
 int seg=0;
-int b=1;
-volatile int  cont = 0;
+int b=3;
+int minu=2;
+volatile int  cont = 0; /*               
+String dato2 = "";                        // un string para guardar la info
+bool findato2 = false;                                                          */
+String dato = "";  
+bool findato = false;                     // si el string esta completo
 
-String dato = "";                         // un string para guardar la info
-bool findato = false;                     // whether the string is complete
 int a=0;                                  //Seleccion de opcion
 
 void setup() {
-  Serial.begin(115200);                   // inicio serial
   SerialBT.begin(115200);                   // inicio bluetooth
   SerialBT.begin("EntrenadorBMX");
-  SerialBT.println("Conexion disponible");
+  SerialBT.println("Conexion disponible");/*
+  Serial.begin(115200);                     // inicio serial
   Serial.println("Conexion disponible");
+  dato2.reserve(200);*/
   dato.reserve(200);                      //Guardo 200 bytes para datos de llegada
-
+  
   pinMode(vel, INPUT);                                              //RPM
   attachInterrupt(digitalPinToInterrupt(vel), inter, RISING);
   
 }
 void loop() {
-  SerialBT.println("hola opcion 1 o 2 -----");      //Pregunta por opcion
-  Serial.println("hola opcion 1 o 2------");
+  SerialBT.println("Seleccione opcion (1) Medición velocidad o (2) Vacio");      //Pregunta por opcion
+  //Serial.println("Seleccione opcion (1) Medición velocidad o (2) Vacio");
   serialEvent();
   a=dato.toInt();
-  Serial.println(dato);
+  //Serial.println(dato);
   switch (a) {                                //seleccion de caso segun usuaio
-      case 1:
-        SerialBT.print("hola durante cuantos minutos desea medir: ");
-        Serial.print("hola durante cuantos minutos desea medir: ");
-        serialEvent();
-        b=dato.toInt();
-        b*=60;
+      case 1:/*
+        SerialBT.println("hola durante cuantos minutos desea medir: ");
+        Serial.println("hola durante cuantos minutos desea medir: ");
+        if (Serial.available()){
+      char inCh = (char)SerialBT.read();    //Almacena dato entrante (serial normal)
+          dato2=inCh;                         //Almacena el dato local en variable global
+          if (inCh == '\n') {                   //Si el dato que viene es nueva linea lo pone en variable para el loop
+            findato2 = true;
+            }
+        }
+        b=dato2.toInt();   
+        minu=b*2;
         delay(5000);
         Serial.print(b);
-        SerialBT.print("inicializando aplicación");
-        Serial.print("inicializando aplicación");
-        delay(5000);
-        SerialBT.print("Inicia en:" );
-        Serial.print("Inicia en:" );
+        Serial.print(minu);
+        SerialBT.println("Cargando configuración ");
+        Serial.println("Cargando configuración ");
+        delay(5000);*/
+        SerialBT.println("Inicia en: " );
+        Serial.println("Inicia en: " );
         for (int i=10;i>=0;i--){
-            SerialBT.print(i);
-            Serial.print(i);
+            SerialBT.println(i);
+            Serial.println(i);
             delay(999);
         }
-        for (int i=0;i<=b;i++){
+        for (int i=0;i<=20;i++){                //AQUI ------>>>>>>>>>Hago monitoreo por 10 segundos<<<<<<---------
 //----------------------------------------------------------------------------
-  SerialBT.print(seg);            //segundos
-  SerialBT.print("\t");
-  seg++;
-  delay(999);
-  cont*=7.5;                      // Como son 8 interrupciones por vuelta (contador * (60/8)=7.5)
-  SerialBT.print(cont);             //  El numero 8 depende del numero aspas de la helise del motor en prueba
-  SerialBT.println(" RPM");
-  Serial.print(cont);
-  Serial.println(" RPM");
-  cont=0;
+            SerialBT.print(seg);            //segundos
+            SerialBT.print("\t");
+            seg++;
+            delay(999);
+            cont*=7.5;                        // Como son 8 interrupciones por vuelta (contador * (60/8)=7.5)
+            SerialBT.print(cont);             //  El numero 8 depende del numero aspas de la helise del motor en prueba
+            SerialBT.println(" RPM");
+            Serial.print(cont);
+            Serial.println(" RPM");
+            cont=0;
 //-----------------------------------------------------------------------------          
             }
-          b=1;
           a=0;
           dato="";          //limpiar el dato
           findato = false;
-          Serial.println("Fin de medición.");
-          Serial.print(b);  
+          SerialBT.println("Fin de medición.");
           break;
       case 2:
-        SerialBT.print("No valida 22");
+        SerialBT.print("Seleccion vacia");
         delay(2000);
         a=0;
         dato="";          //limpiar el dato
         findato = false;
         break;
       default:
-        SerialBT.print("No valida 33");
+        SerialBT.print("Seleccion no valida");
         delay(2000);
         a=0;
         dato="";          //limpiar el dato
