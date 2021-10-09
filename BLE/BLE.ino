@@ -1,5 +1,5 @@
-#include "BluetoothSerial.h"
-#define vel 2
+#include "BluetoothSerial.h"                      //Envio por BLE de RPM --> Km/h 
+#define vel 2                                     //ESP-WROOM-32 Pin del sensor detector de las interrupciones D2 con Res=1k
 #define pi 0.37699111843077518861551720599354     //pi*3/25
 #define r 0.072                                   //radio de circunferencia
 
