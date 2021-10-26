@@ -24,11 +24,11 @@ int a=0;                                  //Seleccion de opcion
 
 void setup() {
   SerialBT.begin(115200);                   // inicio bluetooth
-  SerialBT.begin("EntrenadorBMX");
+  SerialBT.begin("EntrenadorBMX");          // Nombre dispositivo
   SerialBT.println("Conexion disponible");/*
   Serial.begin(115200);                     // inicio serial
   Serial.println("Conexion disponible");
-  //dato2.reserve(200);*/
+  dato2.reserve(200);*/
   dato.reserve(200);                      //Guardo 200 bytes para datos de llegada
   pinMode(vel, INPUT);                                              //RPM
   attachInterrupt(digitalPinToInterrupt(vel), inter, RISING);
