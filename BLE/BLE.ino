@@ -1,5 +1,5 @@
 #include "BluetoothSerial.h"                      //Envio por BLE de RPM --> Km/h 
-#define vel 21                       //D2 Wroom IO21 mini Wroom //ESP-WROOM-32 Pin del sensor detector de las interrupciones D2 con Res=1k
+#define vel 21                                    //D2 Wroom =IO21 mini Wroom sensor detector de las interrupciones D2 con Res=1k
 #define pi 0.37699111843077518861551720599354     //pi*3/25
 #define r 0.072                                   //radio de circunferencia
 
@@ -10,7 +10,6 @@
 BluetoothSerial SerialBT;
 
 //Variables
-int seg=0;
 double velo=0;
 volatile int  cont = 0; /* 
 int b=3;
@@ -23,43 +22,39 @@ bool findato = false;                     // si el string esta completo
 int a=0;                                  //Seleccion de opcion
 
 void setup() {
-  SerialBT.begin(115200);                   // inicio bluetooth
+  SerialBT.begin(115200);   //Serial.begin(115200);        // inicio bluetooth // inicio serial
   SerialBT.begin("EntrenadorBMX");          // Nombre dispositivo
-  SerialBT.println("Conexion disponible");
-  Serial.begin(115200);                     // inicio serial
-  Serial.println("Conexion disponible");
+  SerialBT.println("Conexion disponible");  //Serial.println("Conexion disponible");
   //dato2.reserve(200);
   dato.reserve(200);                      //Guardo 200 bytes para datos de llegada
   pinMode(vel, INPUT);                                              //RPM
   attachInterrupt(digitalPinToInterrupt(vel), inter, RISING);
 }
 void loop() {
-  
   SerialBT.println("Durante cuanto tiempo se va a realizar la medición ");      //Pregunta por tiempo
-  Serial.println("Durante cuanto tiempo se va a realizar la medición ");
-  
-  serialEvent();
+  //Serial.println("Durante cuanto tiempo se va a realizar la medición ");
+  SerialBT.setTimeout(100);
+  delay(500); 
+  //serialEvent();
+ if(SerialBT.available()){
+  dato = SerialBT.readString();
   a=dato.toInt();
-  delay(500);
-  Serial.println(dato);
+//  Serial.println(a);
+//  Serial.println(dato);
     if(a>0){
-    SerialBT.println("Inicia en: " );
-    Serial.println("Inicia en: " );
+    SerialBT.println("Inicia en: " );     //Serial.println("Inicia en: " );
     for (int i=10;i>=0;i--){            //Cuenta atras
-                SerialBT.println(i);
-                Serial.println(i);
+                SerialBT.println(i);    //Serial.println(i);
                 delay(999);
             }
     for (int i=0;i<=a;i++){                //AQUI ------>>>>>>>>>Hago monitoreo por a segundos<<<<<<---------72mm*0.072m
 //--------------------------------------------------------------------------
-
-            seg++;
             delay(999);
-            cont*=7.5;                        // Como son 8 interrupciones por vuelta (contador * (60/8)=7.5)
-            velo=pi*r*cont;                   // Conversion de rpm a km/h
+            cont*=7.5;                          // Como son 8 interrupciones por vuelta (contador * (60/8)=7.5)
+            velo=pi*r*cont;                     // Conversion de rpm a km/h
             velo;
-            SerialBT.print(velo);               //velocidad km/h BLE
-            SerialBT.println(" Km/h");
+            SerialBT.print(velo);    //Serial.print(velo);             //velocidad km/h BLE
+            SerialBT.println(" Km/h");  //Serial.println(" Km/h");
             cont=0;
 //-----------------------------------------------------------------------------          
             }
@@ -68,18 +63,14 @@ void loop() {
           dato="";          //limpiar el dato
           findato = false;
        }
-       
+ } 
 }//Fin loop
-
-void serialEvent() {                        // Funcion para esperar datos entrados por usuario
-  while (SerialBT.available()) {              //Espera por el buffer de datos
-    char inChar = (char)SerialBT.read();    //Almacena dato entrante (serial normal)
-    dato=inChar;                         //Almacena el dato local en variable global
-    if (inChar == '\n') {                   //Si el dato que viene es nueva linea lo pone en variable para el loop
-      findato = true;
-    }
-  }
-}
+//
+//void serialEvent() {                              // Funcion para esperar datos entrados por usuario
+//  while (SerialBT.available()) {                  //Espera por el buffer de datos
+//    dato = SerialBT.readString();
+//  }
+//}
 //---------------------------------------------------------------------------------
 void inter(){                     // Funcion que se ejecuta durante cada interrupion
   cont ++;
@@ -120,9 +111,6 @@ void inter(){                     // Funcion que se ejecuta durante cada interru
 //        }
 //        for (int i=0;i<=20;i++){                //AQUI ------>>>>>>>>>Hago monitoreo por 10 segundos<<<<<<---------72mm*0.072m
 ////--------------------------------------------------------------------------
-//            SerialBT.print(seg);              //segundos
-//            SerialBT.print("\t");
-//            seg++;
 //            delay(999);
 //            cont*=7.5;                        // Como son 8 interrupciones por vuelta (contador * (60/8)=7.5)
 //            velo=pi*r*cont;                   // Conversion de rpm a km/h
@@ -158,3 +146,13 @@ void inter(){                     // Funcion que se ejecuta durante cada interru
 //        findato = false;
 //        break;
 //  }//Fin switch*/
+
+//void serialEvent() {                        // Funcion para esperar datos entrados por usuario
+//  while (SerialBT.available()) {              //Espera por el buffer de datos
+//    char inChar = (char)SerialBT.read();    //Almacena dato entrante (serial normal)
+//    dato=inChar;                         //Almacena el dato local en variable global
+//    if (inChar == '\n') {                   //Si el dato que viene es nueva linea lo pone en variable para el loop
+//      findato = true;
+//    }
+//  }
+//}
