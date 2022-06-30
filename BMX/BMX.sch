@@ -1,0 +1,242 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L BMX-rescue:mini_esp32-ESP32_mini U1
+U 1 1 6214FD60
+P 5500 1950
+F 0 "U1" H 5525 2075 50  0000 C CNN
+F 1 "mini_esp32" H 5525 1984 50  0000 C CNN
+F 2 "ESP32_mini:ESP32_mini" H 5650 2050 50  0001 C CNN
+F 3 "" H 5650 2050 50  0001 C CNN
+	1    5500 1950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x03 RPM1
+U 1 1 62151AD9
+P 7500 2050
+F 0 "RPM1" H 7580 2092 50  0000 L CNN
+F 1 "Conn_01x03" H 7580 2001 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 7500 2050 50  0001 C CNN
+F 3 "~" H 7500 2050 50  0001 C CNN
+	1    7500 2050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x03 NEOpixel1
+U 1 1 621543F8
+P 7250 2650
+F 0 "NEOpixel1" H 7330 2692 50  0000 L CNN
+F 1 "Conn_01x03" H 7330 2601 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 7250 2650 50  0001 C CNN
+F 3 "~" H 7250 2650 50  0001 C CNN
+	1    7250 2650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4800 1800 6700 1800
+Wire Wire Line
+	6700 1800 6700 2050
+Wire Wire Line
+	4700 4700 7050 4700
+Text Label 7000 2050 0    50   ~ 0
+IN
+Text Label 7000 2750 0    50   ~ 0
+IN
+Wire Wire Line
+	6700 2050 7300 2050
+Wire Wire Line
+	6050 2250 6200 2250
+Wire Wire Line
+	6200 2250 6200 2350
+Wire Wire Line
+	6200 2350 6050 2350
+Wire Wire Line
+	6050 2450 6200 2450
+Wire Wire Line
+	6200 2450 6200 2350
+Connection ~ 6200 2350
+Wire Wire Line
+	7050 2750 7050 4700
+Wire Wire Line
+	4700 3450 4700 4700
+Wire Wire Line
+	5000 3450 4700 3450
+Wire Wire Line
+	5000 3350 4800 3350
+Wire Wire Line
+	4800 3350 4800 1800
+$Comp
+L power:GND #PWR0104
+U 1 1 624E6B8D
+P 7300 1950
+F 0 "#PWR0104" H 7300 1700 50  0001 C CNN
+F 1 "GND" V 7305 1822 50  0000 R CNN
+F 2 "" H 7300 1950 50  0001 C CNN
+F 3 "" H 7300 1950 50  0001 C CNN
+	1    7300 1950
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR0105
+U 1 1 624E7711
+P 6200 2350
+F 0 "#PWR0105" H 6200 2100 50  0001 C CNN
+F 1 "GND" V 6205 2222 50  0000 R CNN
+F 2 "" H 6200 2350 50  0001 C CNN
+F 3 "" H 6200 2350 50  0001 C CNN
+	1    6200 2350
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GND #PWR0106
+U 1 1 624E8006
+P 7050 2650
+F 0 "#PWR0106" H 7050 2400 50  0001 C CNN
+F 1 "GND" V 7055 2522 50  0000 R CNN
+F 2 "" H 7050 2650 50  0001 C CNN
+F 3 "" H 7050 2650 50  0001 C CNN
+	1    7050 2650
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR0107
+U 1 1 624E8735
+P 8000 4250
+F 0 "#PWR0107" H 8000 4000 50  0001 C CNN
+F 1 "GND" V 8005 4122 50  0000 R CNN
+F 2 "" H 8000 4250 50  0001 C CNN
+F 3 "" H 8000 4250 50  0001 C CNN
+	1    8000 4250
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x06 CargadoUSB1
+U 1 1 626CB0E8
+P 8400 4150
+F 0 "CargadoUSB1" H 8480 4142 50  0000 L CNN
+F 1 "Conn_01x06" H 8480 4051 50  0000 L CNN
+F 2 "TP4056-18650-master:TP4056-18650" H 8400 4150 50  0001 C CNN
+F 3 "~" H 8400 4150 50  0001 C CNN
+	1    8400 4150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x02 Bateria3v1
+U 1 1 62172271
+P 6700 4450
+F 0 "Bateria3v1" H 6780 4442 50  0000 L CNN
+F 1 "Conn_01x02" H 6780 4351 50  0000 L CNN
+F 2 "Battery:BatteryHolder_Keystone_2462_2xAA" H 6700 4450 50  0001 C CNN
+F 3 "~" H 6700 4450 50  0001 C CNN
+	1    6700 4450
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	5000 4250 4850 4250
+Wire Wire Line
+	4850 4250 4850 4650
+Wire Wire Line
+	8550 4650 8550 3800
+Wire Wire Line
+	8100 4150 8200 4150
+Wire Wire Line
+	6050 2150 6650 2150
+Wire Wire Line
+	7050 2550 6750 2550
+Wire Wire Line
+	6750 2550 6750 2150
+Connection ~ 6750 2150
+Wire Wire Line
+	6750 2150 7300 2150
+Wire Wire Line
+	6550 4150 6550 2050
+Wire Wire Line
+	6550 2050 6050 2050
+Connection ~ 8100 4150
+Wire Wire Line
+	4850 4650 8550 4650
+Wire Wire Line
+	6550 4150 8100 4150
+Wire Wire Line
+	6900 4450 8200 4450
+Wire Wire Line
+	8100 3800 8100 4150
+Wire Wire Line
+	8550 3800 8100 3800
+Wire Wire Line
+	8200 3950 7600 3950
+Wire Wire Line
+	6950 3100 7300 3100
+Wire Wire Line
+	6650 3500 6650 2150
+Connection ~ 6650 2150
+Wire Wire Line
+	6650 2150 6750 2150
+$Comp
+L Transistor_FET:IRF9540N Q1
+U 1 1 62828D77
+P 7400 3300
+F 0 "Q1" H 7605 3254 50  0000 L CNN
+F 1 "IRF9540N" H 7605 3345 50  0000 L CNN
+F 2 "Package_TO_SOT_THT:TO-220-3_Horizontal_TabDown" H 7600 3225 50  0001 L CIN
+F 3 "http://www.irf.com/product-info/datasheets/data/irf9540n.pdf" H 7400 3300 50  0001 L CNN
+	1    7400 3300
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	7600 3300 7600 3950
+Wire Wire Line
+	8000 4250 8000 4050
+Wire Wire Line
+	8000 4050 8200 4050
+Wire Wire Line
+	8200 4250 8000 4250
+Connection ~ 8000 4250
+Wire Wire Line
+	7300 3500 6650 3500
+Wire Wire Line
+	6950 4350 8200 4350
+Wire Wire Line
+	6900 4350 6950 4350
+Connection ~ 6950 4350
+Wire Wire Line
+	6950 4350 6950 3100
+Wire Wire Line
+	7750 3300 7600 3300
+$Comp
+L power:GND #PWR0101
+U 1 1 6283377A
+P 8050 3300
+F 0 "#PWR0101" H 8050 3050 50  0001 C CNN
+F 1 "GND" V 8055 3172 50  0000 R CNN
+F 2 "" H 8050 3300 50  0001 C CNN
+F 3 "" H 8050 3300 50  0001 C CNN
+	1    8050 3300
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:R R1
+U 1 1 62828008
+P 7900 3300
+F 0 "R1" V 7693 3300 50  0000 C CNN
+F 1 "100k" V 7784 3300 50  0000 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" V 7830 3300 50  0001 C CNN
+F 3 "~" H 7900 3300 50  0001 C CNN
+	1    7900 3300
+	0    1    1    0   
+$EndComp
+$EndSCHEMATC
