@@ -38,6 +38,3 @@ void interrupcion0()    // Funcion que se ejecuta durante cada interrupion
 {
   contador++;           // Se incrementa en uno el contador
 }
-//bñkfsgmgñskgñlm
-//ghlkmdfgñlhkmdf
-//dlgkmhmñdlfkgmh
